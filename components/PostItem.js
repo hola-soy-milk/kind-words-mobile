@@ -1,31 +1,42 @@
-import { StyleSheet, View } from 'react-native';
-import {colors} from  './styles/constants';
+import { Text, StyleSheet, View } from 'react-native';
+import {colors} from  '../styles/constants';
 
-export default (props) => {
-  const {sender, body, handle, createdAt} = props;
+export default ({post}) => {
+  const {sender, body, handle, createdAt} = post;
   return (
-    
+    <View style={styles.card}>
+      <Text>{sender}: {handle}</Text>
+      <Text style={styles.center}>{body}</Text>
+      <Text style={styles.right}>{createdAt.toLocaleDateString()}</Text>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  right: {
+    textAlign: 'right'
+  },
+  center: {
+    textAlign: 'center'
+  },
 card: {
-    backgroundColor: colors.cardBackground;
-    paddingTop: 1rem;
-    paddingLeft: 3rem;
-    paddingRight: 3rem;
-    paddingBottom: 1rem;
-    display: flex;
-    flexDirection: column;
-    justifyContent: space-between;
-    borderRadius: 3rem;
-    marginBottom: 3rem;
-    border: var(--card-shadow) 0.5rem solid;
-    border-top-width: 0;
-    border-left-width: 0;
-    border-bottom-right-radius: 3rem;
-    border-bottom-left-radius: 3rem;
-    border-top-right-radius: 3rem;
-    text-align: left;
+    backgroundColor: colors.cardBackground,
+    paddingTop: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingBottom: 10,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    borderRadius: 30,
+    marginBottom: 30,
+    borderColor: colors.cardShadow,
+    borderWidth: 0.5,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderBottomRightRadius: 30,
+    borderBottomLeftRadius: 30,
+    borderTopRightRadius: 30,
+    textAlign: 'left'
   }
 });
