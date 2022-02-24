@@ -7,7 +7,7 @@ export default ({post}) => {
     <View style={styles.card}>
       <Text>{sender}: @{handle}</Text>
       <Text style={styles.center}>{body}</Text>
-      <Text style={styles.right}>{createdAt.toLocaleDateString()}</Text>
+      <Text style={styles.right}>{new Date(createdAt).toLocaleDateString()}</Text>
     </View>
   )
 }
