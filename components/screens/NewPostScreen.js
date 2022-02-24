@@ -8,10 +8,11 @@ import { StatusBar } from 'expo-status-bar';
 
 import Header from '../Header';
 import { StyleSheet, View } from "react-native";
-export default () => {
-  const [name, onSetName] = useState("");
-  const [body, onSetBody] = useState("");
-  const [handle, onSetHandle] = useState("");
+
+export default ({ route, navigation }) => {
+  const [sender, onChangeSender] = useState("");
+  const [body, onChangeBody] = useState("");
+  const [handle, onChangeHandle] = useState("");
   return (
     <View style={styles.container}>
       <StatusBar
@@ -19,22 +20,49 @@ export default () => {
         translucent={true}
         style="dark"
       />
-      <Header label="Kind Words" />
-      <FlatList
-        style={styles.list}
-        data={posts}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.createdAt}
+      <Header label="New Post" />
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeSender}
+        placeholder="Sender"
+        value={sender}
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeBody}
+        placeholder="Body"
+        value={body}
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeHandle}
+        placeholder="Handle"
+        value={handle}
+      />
+      <Button
+        title="Add"
+        onPress={() => {
+          route.params.onNewPost({
+            sender,
+            handle,
+            body,
+            createdAt: new Date(),
+          })
+          navigation.goBack();
+        }}
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  list: {
-    marginTop: 30,
-    paddingLeft: 30,
-    paddingRight: 30,
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    backgroundColor: colors.cardBackground,
+    borderColor: colors.cardShadow,
+    padding: 10,
   },
   container: {
     height: "100%",
