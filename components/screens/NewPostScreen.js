@@ -1,13 +1,8 @@
 import {useState} from 'react';
-import { TextInput, Button } from 'react-native';
-
-const renderItem = item => <PostList post={item.item} />
-
+import { StyleSheet, View, TextInput, Button } from 'react-native';
 import {colors} from  '../..//styles/constants';
 import { StatusBar } from 'expo-status-bar';
-
 import Header from '../Header';
-import { StyleSheet, View } from "react-native";
 
 export default ({ route, navigation }) => {
   const [sender, onChangeSender] = useState("");
